@@ -72,7 +72,7 @@ MBigDecimal MBigDecimal::PackBitToWords(std::vector<bool> bits)
 	return num;
 }
 
-CString MBigDecimal::SchoolMultiplying(CString a, CString b)
+CString MBigDecimal::SchoolMultiplying(const CString a, const CString b)
 {
 	// if one of the components is 0 returns 0		
 	if (a.FindOneOf(_T("123456789")) == -1)
@@ -143,7 +143,7 @@ CString MBigDecimal::SchoolMultiplying(CString a, CString b)
 }
 
 // to do - create more efficient method for parsing string to 64b based MBigDecimal
-void MBigDecimal::ParsFromString(CString sValue)
+void MBigDecimal::ParsFromString(const CString sValue)
 {
 	// estimate number of bits		
 	// wsp - proportion of size between binary and decimal number representation
@@ -188,7 +188,7 @@ void MBigDecimal::ParsFromString(CString sValue)
 	return;
 }
 
-void MBigDecimal::ParsFromByteString(CString byteString)
+void MBigDecimal::ParsFromByteString(const CString byteString)
 {
 	int pos = 0;
 	std::vector<CString> byteToken;
@@ -252,7 +252,7 @@ void MBigDecimal::ParsFromByteString(CString byteString)
 	this->refreshSize();
 }
 
-bool MBigDecimal::Compare(MBigDecimal& anotherNumber)
+bool MBigDecimal::Compare(const MBigDecimal& anotherNumber)
 {
 	if (nOfWords < anotherNumber.nOfWords)
 	{

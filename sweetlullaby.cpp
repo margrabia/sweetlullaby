@@ -35,13 +35,13 @@ int main()
         else
         {
 			MBigDecimal product;
-			//102233 x 3002981 = 20700240073
+			//102233 x 202481 = 20700240073 
 			//20003297 x 30003509 = 600169101569173
 			//30003509 x 50003659 = 1500285232839431
 			//30003509 x 5000004067 =    150017667024271103
 			//50000005127 x 5000004067 =    250000228985020851509
 			
-			product.ParsFromString("250000228985020851509");
+			product.ParsFromString("600169101569173");
 			int countGlobal = 0;
 			DWORD dw1 = GetTickCount();
 			MBigDecimal multiplier = Math::FindMultiplicand( product, countGlobal );

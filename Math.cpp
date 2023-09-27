@@ -54,7 +54,7 @@ bool ComputationProcessorForInitialMode::computeOneStep(MBigDecimal& product, MB
 
 	if (Math::Compare(bcTemp, number) > 0)
 	{
-		c.Dec();
+		--c;
 	}
 
 	MBigDecimal bc = Math::Multiply(b, c);
@@ -94,7 +94,7 @@ bool ComputationProcessorForPreprocessingMode::computeOneStep(MBigDecimal& produ
 
 			if (Math::Compare(nJumpMulc, d) > 0)
 			{
-				nJump.Dec();
+				--nJump;
 			}
 			else
 			{
@@ -105,7 +105,7 @@ bool ComputationProcessorForPreprocessingMode::computeOneStep(MBigDecimal& produ
 				nJumpMulc = Math::Add(nJumpMulc, c);
 				while (Math::Compare(nJumpMulc, d) < 0)
 				{
-					nJump.Inc();
+					++nJump;
 					nJumpMulc = Math::Add(nJumpMulc, c);
 				}
 			}
@@ -113,7 +113,7 @@ bool ComputationProcessorForPreprocessingMode::computeOneStep(MBigDecimal& produ
 		}
 		else
 		{
-			b.Inc();
+			++b;
 		}
 
 		MBigDecimal bc = Math::Multiply(b, c);
@@ -139,7 +139,7 @@ bool ComputationProcessorForMode1::computeOneStep(MBigDecimal& number, MBigDecim
 	four.mantissa[0] = 4;
 
 	MBigDecimal a1 = Math::Sub(b, c);
-	a1.Inc();
+	++a1;
 
 	MBigDecimal a1Min4 = Math::Sub(four, a1);
 
@@ -147,8 +147,8 @@ bool ComputationProcessorForMode1::computeOneStep(MBigDecimal& number, MBigDecim
 	//long a1Min4 = (4 - a1);
 	MBigDecimal deltaFirstPart = Math::Sub(d, b);
 	deltaFirstPart = Math::Sub(deltaFirstPart, a1);
-	deltaFirstPart.Inc();
-	deltaFirstPart.Inc();
+	++deltaFirstPart;
+	++deltaFirstPart;
 
 	MBigDecimal a1Min4Pov2 = Math::Multiply(a1Min4, a1Min4);
 	a1Min4Pov2.MoveToExp(0);
@@ -172,16 +172,12 @@ bool ComputationProcessorForMode1::computeOneStep(MBigDecimal& number, MBigDecim
 
 
 	MBigDecimal nJump = Math::Add(a1Min4, sqrDelta);
-	if (!nJump.sign)
-	{
-		int hh = 1;
-	}
-
+	
 	nJump.exponent = -1;
 	nJump.MoveToExp(0);
 
 	b = Math::Add(b, nJump);
-	b.Dec();
+	--b;
 
 	countLocal = 0;
 	//tylko w modzie zero musi na nowo policzyæ.
@@ -194,7 +190,7 @@ bool ComputationProcessorForMode1::computeOneStep(MBigDecimal& number, MBigDecim
 
 	if (Math::Compare(cb, number) > 0)
 	{
-		c.Dec();
+		--c;
 	}
 	else
 	{
@@ -203,7 +199,7 @@ bool ComputationProcessorForMode1::computeOneStep(MBigDecimal& number, MBigDecim
 		MBigDecimal cTmp = Math::Add(cb, b);
 		while (Math::Compare(cTmp, number) < 0)
 		{
-			c.Inc();
+			++c;
 			cTmp = Math::Add(cb, b);
 		}
 	}
@@ -228,7 +224,7 @@ bool ComputationProcessorForMode2::computeOneStep(MBigDecimal& number, MBigDecim
 	one.mantissa[0] = 1;
 
 	MBigDecimal a1 = Math::Sub(b, c);
-	a1.Inc();
+	++a1;
 	//long a1 = b - c + 1;
 
 	MBigDecimal del(1);
@@ -239,10 +235,10 @@ bool ComputationProcessorForMode2::computeOneStep(MBigDecimal& number, MBigDecim
 		d = Math::Add(d, a1);
 		d = Math::Add(d, del);
 
-		del.Inc();
-		del.Inc();
+		++del;
+		++del;
 
-		b.Inc();
+		++b;
 		//b++;
 		c = Math::Sub(c, one);
 		//c--;

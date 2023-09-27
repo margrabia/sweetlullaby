@@ -12,10 +12,10 @@ extern "C" int asmDecBigInt(int length, INT64* a);
 class MBigDecimal
 {
 private:
-	CString sAdd(CString& a, CString& b);
+	CString sAdd(CString& a, CString & b);
 	MBigDecimal PackBitToWords(std::vector<bool> bits);		
 	//school multiplication method - for multiplying representations of sequences
-	CString SchoolMultiplying(CString a, CString b);
+	CString SchoolMultiplying(const CString a, const CString b);
 
 public:
 	INT64 mantissa[maxWords];	
@@ -54,8 +54,8 @@ public:
 		return false;
 	}
 	
-	void ParsFromString(CString sValue);
-	void ParsFromByteString(CString byteString);
+	void ParsFromString(const CString sValue);
+	void ParsFromByteString(const CString byteString);
 	void refreshSize();
 	void setAccuracy(unsigned int a_accuracy)
 	{
@@ -64,7 +64,7 @@ public:
 
 	void AllignDataToAccuracy(int accuracy);
 	void AllignDataToAccuracy();	
-	bool Compare(MBigDecimal& anotherNumber);
+	bool Compare(const MBigDecimal& anotherNumber);
 	void MoveToExp(int expValu);	
 	MBigDecimal();
 	MBigDecimal(byte a_nOfBytes);
@@ -80,6 +80,25 @@ public:
 			mantissa[i] = copy.mantissa[i];
 		}
 	}
+
+	MBigDecimal& operator++()
+	{
+		Inc();
+		return *this;
+	}
+
+	MBigDecimal& operator--()
+	{
+		Dec();
+		return *this;
+	}
+
+
+	bool operator==(const MBigDecimal& b)
+	{
+		return Compare(b);
+	}
+
 	void Inc();
 	void Dec();
 };

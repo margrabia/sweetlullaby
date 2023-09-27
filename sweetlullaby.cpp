@@ -40,8 +40,8 @@ int main()
 			//30003509 x 50003659 = 1500285232839431
 			//30003509 x 5000004067 =    150017667024271103
 			//50000005127 x 5000004067 =    250000228985020851509
-			//300001734787 x 900001718579 = 270002076884981368507673
-			product.ParsFromString("270002076884981368507673");
+			
+			product.ParsFromString("250000228985020851509");
 			int countGlobal = 0;
 			DWORD dw1 = GetTickCount();
 			MBigDecimal multiplier = Math::FindMultiplicand( product, countGlobal );

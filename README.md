@@ -34,7 +34,6 @@ t was experimentally established that mode2 should be activated when n (jump) is
 
 Mode 2:
 
-In experimental way If n (jump) is less than four 
 
 
 
